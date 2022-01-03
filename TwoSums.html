@@ -5,16 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Two Sums</title>
+
+    <style>
+
+        .container{
+            max-width: 512px;
+            margin: auto;  
+            text-align: center;
+        }
+
+        input{
+            margin-bottom: 10px;
+        }
+
+        .card{
+            margin-top: 100px;
+            background-color: cornsilk;
+            box-shadow: 0px 1px 8px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        button{
+            border-radius: 5px;
+            padding: 5px;
+            transition: 0.5s;
+        }
+
+        .btn-primary{
+            background-color: #337ab7;
+            color: #fff;
+        }
+
+        .btn-secondary{
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        button:hover{
+            transform: scale(120%);
+            cursor: pointer;
+        }
+        
+    </style>
 </head>
 <body>
-    <form  onsubmit="output(event)">
-        <label for="num"> Input Num</label>
-        <input type="number" id="num"><br><br>
-        <label for="target">Target</label>
-        <input type="number" id="target">
-        <button type="submit">Output</button>
-    </form>
-    <p id="output"></p>
+    
+    <div class="container">
+        <div class="card">
+            <h1>Two Sums</h1>
+            <form onsubmit="output(event)">
+                <label for="num"> Input Num :</label><br>
+                <input type="number" id="num" min="0"><br>
+                <label for="target">Target :</label><br>
+                <input type="number" id="target" min="1"><br>
+                <button type="submit" class="btn-primary">Output</button>
+                <button type="reset">Reset</button>
+            </form>
+            <p id="output"></p>
+        </div>
+    </div>
 </body>
 </html>
 <script>
@@ -25,17 +75,15 @@
         let target = document.getElementById('target').value
 
         let result = [];
-        
+
         for (let i = 0; i < array.length; i++) {
             for (let j = i + 1; j < array.length; j++) {
                 if(parseInt(array[i]) + parseInt(array[j]) == target) {
                     result.push(i, j)
                 } 
-                
             }
-            
         }
-
+        document.getElementById('output').innerHTML = "";
         return document.getElementById('output').innerHTML = result;
     }
 </script>
