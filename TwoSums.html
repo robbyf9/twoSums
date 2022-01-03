@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sums</title>
+</head>
+<body>
+    <form  onsubmit="output(event)">
+        <label for="num"> Input Num</label>
+        <input type="number" id="num"><br><br>
+        <label for="target">Target</label>
+        <input type="number" id="target">
+        <button type="submit">Output</button>
+    </form>
+    <p id="output"></p>
+</body>
+</html>
+<script>
+    function output(e) {
+        e.preventDefault();
+        let params = document.getElementById('num').value
+        let array = params.toString().split("");
+        let target = document.getElementById('target').value
+
+        let result = [];
+        
+        for (let i = 0; i < array.length; i++) {
+            for (let j = i + 1; j < array.length; j++) {
+                if(parseInt(array[i]) + parseInt(array[j]) == target) {
+                    result.push(i, j)
+                } 
+                
+            }
+            
+        }
+
+        return document.getElementById('output').innerHTML = result;
+    }
+</script>
