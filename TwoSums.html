@@ -54,13 +54,13 @@
     <div class="container">
         <div class="card">
             <h1>Two Sums</h1>
-            <form onsubmit="output(event)">
+            <form onsubmit="output(event)" id="formInput">
                 <label for="num"> Input Num :</label><br>
-                <input type="number" id="num" min="0"><br>
+                <input type="text" onkeypress="checkInput(event)" id="num"><br>
                 <label for="target">Target :</label><br>
-                <input type="number" id="target" min="1"><br>
+                <input type="text" id="target"><br>
                 <button type="submit" class="btn-primary">Output</button>
-                <button type="reset">Reset</button>
+                <button type="reset" onclick="document.getElementById('output').innerHTML = ''">Reset</button>
             </form>
             <p id="output"></p>
         </div>
@@ -68,22 +68,38 @@
 </body>
 </html>
 <script>
+    function checkInput(e) {
+        if (e.charCode >= 48 && e.charCode <= 57 || e.charCode > 43 && e.charCode < 45) {
+            return e.target.value
+        } else {
+            return e.preventDefault();
+        }
+    }
+
     function output(e) {
         e.preventDefault();
+        
         let params = document.getElementById('num').value
-        let array = params.toString().split("");
+        let array = params.toString().split(",");
         let target = document.getElementById('target').value
 
         let result = [];
 
-        for (let i = 0; i < array.length; i++) {
-            for (let j = i + 1; j < array.length; j++) {
-                if(parseInt(array[i]) + parseInt(array[j]) == target) {
-                    result.push(i, j)
-                } 
+        if (params.includes(',')) {
+            for (let i = 0; i < array.length; i++) {
+                for (let j = i + 1; j < array.length; j++) {
+                    if(parseInt(array[i]) + parseInt(array[j]) == target) {
+                        result.push(i, j)
+                    } 
+                }
             }
+
+            document.getElementById('output').innerHTML = "";
+            return document.getElementById('output').innerHTML = 'Result : ' + result[0] + ',' + result[1];
+
+        } else {
+            alert('Incorrect Format Of Input Num. Example : 1,2,3,4');
+            document.getElementById('formInput').reset();
         }
-        document.getElementById('output').innerHTML = "";
-        return document.getElementById('output').innerHTML = result;
     }
 </script>
