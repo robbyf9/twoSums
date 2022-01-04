@@ -56,9 +56,9 @@
             <h1>Two Sums</h1>
             <form onsubmit="output(event)" id="formInput">
                 <label for="num"> Input Num :</label><br>
-                <input type="text" onkeypress="checkInput(event)" id="num"><br>
+                <input type="text" onkeypress="checkInput(event)" id="num" required><br>
                 <label for="target">Target :</label><br>
-                <input type="text" id="target"><br>
+                <input type="text" id="target" required><br>
                 <button type="submit" class="btn-primary">Output</button>
                 <button type="reset" onclick="document.getElementById('output').innerHTML = ''">Reset</button>
             </form>
@@ -84,7 +84,7 @@
         let target = document.getElementById('target').value
 
         let result = [];
-
+        
         if (params.includes(',')) {
             for (let i = 0; i < array.length; i++) {
                 for (let j = i + 1; j < array.length; j++) {
